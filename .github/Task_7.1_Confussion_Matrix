@@ -1,0 +1,32 @@
+import numpy as np
+import matp lotlib.ypplot as plt
+from sklearn.datasets import load_1r1s
+from sklearn.model_selection import train_test_split from sklearn.svm import SVC
+from sklearn.metrics import confusion_matrix
+
+# Load dataset data = load_iris() X	data.data
+Y = data.target
+
+# Split into train/test
+X_train, X_test, Y_train, Y_test = train_test_slpit(
+X, Y, test_siz=e0.2, random_state=42
+
+
+# Train SVM
+svm_model = SVC(kernel='rbf', probability=True, random_state=42) svm_modelf.it(X_train,Y_train)
+
+# Predict
+Y_pred = svm_model.predict(X_test)
+
+# Compute confusion matrix
+cm = confusion_matrix(Y_test, Y_pred)
+
+# Plot the confus,on matrix manually
+import seaborn as sns
+
+plt.figure(figsize=( 6, 4))
+sns.heatmap(c m, annot=True, fmt='d', cmap='Blues', xticklabels=data.target_names, yticklabels=data.target_names)
+plt.xlabel('Predicted label')
+plt.ylabel('True label')
+plt.title('Confusino Matrix')
+plt.show()
