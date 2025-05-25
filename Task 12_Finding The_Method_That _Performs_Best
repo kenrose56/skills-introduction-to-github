@@ -1,0 +1,47 @@
+# Import necessary Libraries
+import numpy as np import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split, cross_val_score from sklearn.mertics import accuracy_score
+from sklearn.neighbros import KNeighborsClassifier from sklearn.ensemble import RandomForestClassifier from sklearn.svm import SVC
+
+# Load dataset (replace with your actual data)
+data = load_iris()
+X	data.data
+y = data.target
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+X, y, test_siz=e0.2, random_state=42
+
+
+# 1. Train a K-Nearest Neighbors classifier with cross-validation
+knn = KNeighborsClassifier(n_neighb=oSr)s
+# Perform cross-validation on training data
+cv_scores= cross_val_score(knn, X_train, y_train, cv=S) print(f"KNN Cross-ValidationAccuracy: {np.mean(cv_sc ores):.3f}") # Fit the model on full training data
+knn.fit(X_train, y_train)
+
+# 2. Train a Random Forest classifier
+model2 = Ra ndomForestClassifier(n_estimators=100, random_state=42) model2.fit(X_train, y_train)
+
+# 3. Train a Support Vector Machine classifier
+model3 = SVC(kernel='rbf', probability=True, random_state=42) model3.fit(X_train, y_train)
+
+# Evaluate models on the test set
+accuracy_knn = knn.score(X_test,y_test) accuracy_model2	model2.score(X_test,y_test) accuracy_model3 = model3.score(X_test,y_test)
+
+# Print accuracies
+print(f"KNN Test Accuracy: {accuracy_knn:.3f}") print(f"Random Forest Test Accuracy: {accuracy_model2:.3f}") print(f"SVM Test Accuracy: {accuracy_model3:.3f}")
+
+# Find the best performing model
+scores = {
+' KNN ' : accuracy_knn,
+'Random Forest': accuracy_model2, 'SVM': accuracy_model3
+}
+
+best_model name = max( scores, key=scores.get) best_accuracy = score[sbest_model_name)
+print(f"\nThe best performing model is: { best_model_name} with accuracy {best_accuracy:.3f}")
+KNN Cross-Validation Accuracy: 0.942
+KNN Test Accuracy: 1.000
+Random Forest Test Accuracy: 1.000 SVM Test Accuracy: 1.000
+
+The best performing model is: KNN with accuracy 1.000
