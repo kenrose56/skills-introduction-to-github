@@ -1,0 +1,47 @@
+import numpy as np
+import matplotlib.pyplot as  plt import seaborn as sns
+from sklearn.datasetsimport load_iris
+from sklearn.linear_modelimport LogisticRegression
+from sklearn.mode l_selectionimport GridSearchCV, train_test_split from sklearn.metrics import confusion_matrix
+
+I Load dataset (replace with your dataset as needed)
+data = load_iris()
+X	data.data
+y = data.target
+
+I Split into training and test sets
+X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.2, random_state=42, stratify=y
+
+
+I Define parameter grid for GridSearchCV
+parameters = {
+'penalty': ['11', '12'], # 'elasticnet' excluded for simplicity
+' C' :  [0.01, 0.1, 1, 10, 100],
+'solver': ['liblinear', 'saga']
+}
+I Initialize LogisticRegression with increased max_iter
+logreg = LogisticRegression(max_iter=2000, random_state=42)
+
+I Set up GridSearchCV
+grid_search = GridSearchCV( estimator=logreg, param_grid=parameters, cv=10, scoring='accuracy')
+
+I Fit the model
+grid_search.fit(X_train,y_train)
+
+I Get the best estimator
+best_model = grid_search.best_estmiator_
+
+I Make predictionson test data
+y_pred = best_model.predict(X_test)
+
+I Function to plot confusion matrix
+def plot_confusion_matrix(y_true, y_pred): cm = confusion_matrix(y_true, y_pred) plt.figure(figsize=( B,6))
+sns.heatmap( cm, annot=True, fmt='d', cmap='Blues', xticklabels=data.target_names, yticklabels=data.target_names) plt.xlabel('Predicted Label')
+plt.ylabel('True Label') plt.titl(e'Confusion Matrix') plt.show()
+
+I Plot confusion matrix
+plot_confusion_matrix( y_test, y_pred)
+
+I Calculate and print accuracy
+accuracy = best_model.score(X_test, y_test) print(f"Test set accuracy: {accuracy:.2f}")
+ 
