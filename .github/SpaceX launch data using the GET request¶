@@ -1,0 +1,20 @@
+import requests
+
+# URL of the static JSON data
+static_json_url = 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-DS0321EN-SkillsNetwork/datasets/space_x_launches.json'
+
+# Make GET request to fetch data
+response = requests.get(static_json_url)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Parse JSON data
+    launches = response.json()
+    print(f"Total number of launches: {len(launches)}\n")
+    
+    # Print the name of each launch
+    print("List of SpaceX Launches:")
+    for launch in launches:
+        print(f" - {launch['name']}")
+else:
+    print(f"Failed to retrieve data. Status code: {response.status_code}")
