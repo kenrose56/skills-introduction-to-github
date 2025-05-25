@@ -1,0 +1,24 @@
+from sklearn.neighbors import KNeighborsClassifier from sklearn.model_selection import GridSearchCV
+
+# Define the hyperparameter grid for KNN
+parameters = {
+' n_nei ghbors ' : [ 3, 5, 7, 9 ],
+'weights' : [ 'uniform' , 'dist ance ' ],
+' al gor i t hm' : [ ' aut o ' , ' ball _t ree ' , ' kd_t ree ' , ' brut e ' ]
+
+#  Create  the  KNN classifier
+knn = KNei  g hbors Class  if i er ()
+
+# Set up GridSearchCV with 10-foLd cross-vaLidation
+knn_cv = Gri dSe archCV( e st imat or =knn , param_g ri d=paramet ers , c v =10 )
+
+# Fit the grid search to your training data
+knn_c v. f i t ( X_t r ai n, y_t r ai n)
+
+# OptionaL: print the best parameters found
+pr i nt ( "Best  paramet ers :",   knn_c v. best _param s_ )
+Best parameters: { 'al gori t hm' : 'auto', 'n_neighbors': 7, 'weights': 'uni f orm' }
+
+pr i nt ( "tuned  hpyerparameters  : (best  parameters )  ", knn_cv. best _par ams_ )
+pri nt ( "accuracy : ", knn_c v . best _s core_ )
+tuned hpyer paramet ers : ( best parameters) {'algorithm' : ' aut o ' , ' n_nei ghbors ' : 7,  ' wei ght s ' :  'uniform'} accurac y : 0. 92125
