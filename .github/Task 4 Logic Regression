@@ -1,0 +1,29 @@
+import numpy as np	  from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import GridSearchCV from sklearn.datasets import load_iris
+
+# Load your dataset
+# Replace this with your actual dataset Loading method if different
+data = load_iris()
+X	data.data
+y = data.target
+
+# Define the parameter grid with only valid combinations
+parameters = {
+' penalty': ['11', '12'],  #  'elasticnet' requires ll_ratio, so exclude for simplicity
+' C' :  [0.0,1 0.1, 1, 10, 100],
+'solver': ['liblinear', 'saga'] # 'liblinear' supports 'll' and 'L2'; 'saga' supports all three
+}
+
+# Initialize logisticRegression with higher max_iter to help convergenc
+logreg = LogisticRegression(m ax_iter=2000, random_state=42)
+
+#Setup GridSearchCV
+logreg_cv = GridSearchCV(estimator=logreg,param_grid=parameters, cv=10 , scoring='accuracy')
+
+# Fit the model
+logreg_cv.fit(X, y)
+# Output the best parameters
+print("Best parameters:", logreg_cv.best_params_)
+
+# Optional: print best score
+print("Best cross-validation accuracy:", logreg_cv.best_score_)
