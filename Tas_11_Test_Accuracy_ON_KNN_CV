@@ -1,0 +1,8 @@
+Calculate the accuracy of knn_cv on the test data using the method score :
+
+# Assuming your test data are X_test and y_test 
+accuracy= knn_cv.scor(eX_test,y_test)
+prin(t"Testaccuracy:," accuracy)
+
+
+Test accuracy: 0.905
