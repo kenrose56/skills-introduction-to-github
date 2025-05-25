@@ -1,0 +1,24 @@
+import pandas as pd
+from sklearn import preprocessing
+
+# Example dataset: replace this with your actual data
+data = pd.DataFrame({
+·	Featurel': [10, 20, 30, 40, 50],
+'Feature2': [5, 15, 25, 35, 45],
+'Feature3': [100, 200, 300, 400, 500]
+})
+
+#  Extractfeatures into X (assuming all columns are featurse)
+X = data.values # or data[['Feature1', 'Feature2', 'Feature3']]
+
+#  Initialize the StandardScaler
+transform = preprocessingS.tandardSca ler()
+
+# Standardize the data
+X = transform.fit_transform( X)
+
+# Optional: convert back to DataFrame for easier interpretation
+X_df = pd.DataFrame(X, columns=data.columns)
+
+# Display the standardized data
+print("Standardized Data:\n", X_df)
