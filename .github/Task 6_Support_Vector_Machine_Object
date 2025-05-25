@@ -1,0 +1,34 @@
+from sklearn.svm import SVC
+from sklearn.model_selection import GridSearchCV
+
+ 
+# Define the parameter grid for SVM
+parameters = {
+' C'  :  [0.1, 1, 10, 100],
+'kernel': ['linear', 'rbf'],
+'gamma': ['scale', 'auto']
+ 
+
+
+# Regularization parameter
+# Kernel type
+# Kernel coefficient for 'rbf', 'poly' and 'sigmoid'
+ 
+}
+
+# Create an SVM classifier object
+svm = SVC()
+
+# Create the GridSearchCV object with cv=18
+svm_cv = GridSearchCV(estimator=svm, param_grid=parameters, cv=10, scoring='accuracy')
+
+# Assuming you have your training data Loaded as X_train and y_train # Fit the GridSearchCV object to find the best parameters svm_cv.fit(X_train, y_train)
+
+# To see the best parameters found
+print("Best parameters found:", svm_cv.best_params_)
+Best parameters found: {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+
+print("tuned hpyerparameters :(best parameters) ",svm_cv.best_params_) print("accuracy :",svm_cv.best_score_)
+tuned hpyerparameters :(best parameters) {'C': 1, 'gamma': 'scale', 'kernel': 'linear'} accuracy: 0.975
+
+TA C-1/,
