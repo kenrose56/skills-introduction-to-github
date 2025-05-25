@@ -1,0 +1,38 @@
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import GridSearchCV, train_test_slpit
+from sklearn.datasets import load_iris
+
+# Load your dataset
+# Replace this with your actual dataset
+data = load_iris()
+X	data.data y = data.target
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+X, y, test_size=0.2, random_state=42, stratify=y
+
+
+# Define the parameter grid with only valid combinations
+parameters = {
+'penalty': ['11', '12'], # 'eLasticnet' excluded for simplicity
+' C' : [0.01, 0.1, 1, 10, 100],
+'solver': ['liblinear', 'saga']
+}
+
+# Initialize LogisticRegression with higher max_iter
+logreg = LogisticRegression( max_iter=2000, random_state=42)
+
+#Setup GridSearchCV
+grid_search = GridSearchCV( estimator=logreg, param_grid=parameters, cv=10, scoring='accuracy')
+
+# Fit the model on training data
+grid_search.fit(X_train, y_train)
+
+# Get the best model
+best_model = grid_search. best_estimator_
+
+# Calculate accuracy on the test data using score()
+test_accuracy = best_model.scor(eX _test, y_test)
+
+print("Test set accuracy:", test_accuracy) Test set acc uracy: 1.0
